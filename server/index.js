@@ -14,7 +14,7 @@ app.use(express.json()) //gives access to req.body
 app.post('/todos', async (req,res) => {
     try {
         const { description } = req.body;
-        const newTodo = await pool.query("INSERT INTO todo (description) VALUES ($1) RETURNING *",
+        const newTodo = await pool.query("INSERT INTO todo (description) VALUES ($1) RETURNING *", //whenever using PSQL
         [description]);
 
         res.json(newTodo.rows[0])
